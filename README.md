@@ -1,4 +1,4 @@
-# 羅翊寧 Yi-Ning Lo — Portfolio CMS
+#  Portfolio CMS
 
 可正式部署、由 Supabase 驅動的 Product Manager × System Analyst 雙語作品集。公開前台、專案列表／詳細頁與 `/admin` 內容管理後台共用同一份資料結構。
 
