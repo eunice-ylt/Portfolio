@@ -47,7 +47,7 @@ public/og.png                # 社群分享圖
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
@@ -66,7 +66,7 @@ select id from auth.users where email = 'your-admin@example.com'
 on conflict do nothing;
 ```
 
-5. 從 Project Settings → API 取得 Project URL 與 anon key，填入 `.env.local`。
+5. 從 Connect 或 Settings → API Keys 取得 Project URL 與 Publishable key，填入 `.env.local`。程式亦相容既有的 `NEXT_PUBLIC_SUPABASE_ANON_KEY`。
 
 ## 本機啟動
 

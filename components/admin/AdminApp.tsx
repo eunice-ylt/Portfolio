@@ -155,7 +155,7 @@ export function AdminApp() {
     await load();
   }
 
-  if (!hasSupabaseConfig()) return <main className="grid min-h-screen place-items-center bg-[#f3f5f2] p-6"><div className="max-w-lg rounded-xl border border-amber-200 bg-white p-8"><h1 className="text-2xl font-bold">尚未連接 Supabase</h1><p className="mt-4 text-sm leading-7 text-slate-600">請先依 README 設定 NEXT_PUBLIC_SUPABASE_URL 與 NEXT_PUBLIC_SUPABASE_ANON_KEY，並執行 supabase/schema.sql。後台登入與資料維護就會啟用。</p><Link className="admin-button secondary mt-6" href="/zh-TW">返回前台</Link></div></main>;
+  if (!hasSupabaseConfig()) return <main className="grid min-h-screen place-items-center bg-[#f3f5f2] p-6"><div className="max-w-lg rounded-xl border border-amber-200 bg-white p-8"><h1 className="text-2xl font-bold">尚未連接 Supabase</h1><p className="mt-4 text-sm leading-7 text-slate-600">請先依 README 設定 NEXT_PUBLIC_SUPABASE_URL 與 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY，並執行 supabase/schema.sql。後台登入與資料維護就會啟用。</p><Link className="admin-button secondary mt-6" href="/zh-TW">返回前台</Link></div></main>;
   if (checking) return <main className="grid min-h-screen place-items-center bg-[#f3f5f2] text-sm text-slate-500">驗證登入狀態…</main>;
   if (!session) return <Login onReady={(nextSession) => { setSession(nextSession); void load(); }} />;
 
