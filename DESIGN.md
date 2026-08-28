@@ -49,14 +49,14 @@ Use white only on `--accent-strong` and for its subtle internal borders. Prefer 
 
 - **Header:** a compact sticky index with the YL wordmark, identity lockup, active navigation, language control, and restrained contact action. Its warm translucent paper surface keeps context without becoming a floating pill.
 - **Hero:** a viewport-height editorial title field paired with a tall `4:5` portrait. A faint specification grid and offset frame suggest system planning; they remain background texture, never content.
-- **About:** an editorial `3/5/4` text composition followed by ruled trait rows. About and traits are not cards.
-- **Core Skills:** one dark, continuous capability-map system. Individual capabilities are segments of the same ruled grid, not independent cards; numbering, icon, title, and skills share one visual grammar.
+- **About:** an editorial `3/5/4` text composition followed by ruled trait rows. On mobile only, those rows become one-at-a-time swipeable panels to avoid an excessively long page.
+- **Core Skills:** one dark capability-map system. Individual capabilities are segments of the same ruled grid on tablet and desktop; mobile presents one segment at a time inside the same system surface. Numbering, icon, title, and skills share one visual grammar.
 - **Selected Projects:** the deliberate card-based section. Project evidence benefits from a repeatable, scannable image-and-metadata unit.
 - **Contact:** an editorial `8/4` invitation with a ruled three-channel contact index. It remains open and typographic, not a CTA card or form panel.
 - **Project archive:** an editorial masthead and ruled text filters lead into the project grid. The detail page uses a large title, factual metadata, documentary cover, readable Markdown story, and generously spaced gallery evidence.
 - **Footer:** a quiet ruled close with copyright and optional square social actions.
 
-Cards are intentionally reserved for project cases. Do not convert About, Contact, traits, or section headings into rounded feature cards. Core Skills must continue to read as one capability map, even when its columns stack.
+Repeating card grids are intentionally reserved for project cases. The mobile trait and skill carousels may use one restrained slide panel at a time, but do not convert About, Contact, traits, or section headings into desktop feature-card grids. Core Skills must continue to read as one capability map across its responsive forms.
 
 ## Project card anatomy
 
@@ -72,7 +72,7 @@ Cards use square corners, a fine `--line` border, `--paper`, and a low green-tin
 
 ## Responsive behavior
 
-- **Mobile (`<768px`):** single-column reading order, `1rem` shell gutters, fixed `5.5rem` section spacing, collapsed navigation, stacked editorial columns, and one project card per row.
+- **Mobile (`<768px`):** single-column reading order, `1rem` shell gutters, fixed `5.5rem` section spacing, and collapsed navigation. Traits and Core Skills use one-panel horizontal carousels with swipe, 44px arrow controls, position indicators, and a 3-second autoplay interval; autoplay pauses during interaction and is disabled by reduced-motion preferences. Project cases deliberately remain one card per row rather than joining a carousel.
 - **Tablet (`768–1023px`):** two project-card columns and two capability-map columns. Preserve generous line lengths and avoid prematurely forcing 12-column compositions.
 - **Desktop (`>=1024px`):** the homepage project grid is four columns and the capability map is four columns; 12-column editorial layouts activate. This `1 / 2 / 4` progression is the expected featured-case rhythm.
 - Wide layouts may increase breathing room, but content remains capped at `1480px`. Project-detail prose stays narrow even when imagery spans wide.

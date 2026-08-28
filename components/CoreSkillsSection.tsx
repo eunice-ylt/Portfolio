@@ -2,8 +2,9 @@ import type { Locale, SkillCategory } from '@/lib/types';
 import { getDictionary } from '@/lib/dictionary';
 import { localize } from '@/lib/locale';
 import { Icon } from './ui/Icon';
+import { MobileCarousel } from './ui/MobileCarousel';
 
-export function SkillCategoryCard({ skill, locale, index }: { skill: SkillCategory; locale: Locale; index: number }) {
+export function SkillCategoryCard({ skill, locale, index, carousel = false }: { skill: SkillCategory; locale: Locale; index: number; carousel?: boolean }) {
   const borderClass = index === 3
     ? 'md:border-b-0 lg:border-r-0'
     : index === 2
@@ -12,8 +13,12 @@ export function SkillCategoryCard({ skill, locale, index }: { skill: SkillCatego
         ? 'md:border-r-0 lg:border-b-0 lg:border-r'
         : 'md:border-r lg:border-b-0';
 
+  const layoutClass = carousel
+    ? 'min-h-[360px] px-7 py-8'
+    : `min-h-[310px] border-b border-white/15 px-6 py-8 md:min-h-[340px] md:px-8 md:py-10 lg:min-h-[390px] ${borderClass}`;
+
   return (
-    <article className={`group relative flex min-h-[310px] flex-col border-b border-white/15 px-6 py-8 transition-colors duration-300 hover:bg-white/[.045] md:min-h-[340px] md:px-8 md:py-10 lg:min-h-[390px] ${borderClass}`}>
+    <article className={`group relative flex flex-col transition-colors duration-300 hover:bg-white/[.045] ${layoutClass}`}>
       <span aria-hidden="true" className="absolute -top-[5px] left-6 h-2.5 w-2.5 rounded-full bg-[var(--sand)] ring-4 ring-[var(--accent-strong)] md:left-8" />
       <div className="flex items-start justify-between gap-5">
         <span className="display-type text-[clamp(3.6rem,5vw,5.5rem)] font-semibold leading-none tracking-[-.06em] text-white/12">{skill.number}</span>
@@ -31,6 +36,7 @@ export function SkillCategoryCard({ skill, locale, index }: { skill: SkillCatego
 
 export function CoreSkillsSection({ skills, locale }: { skills: SkillCategory[]; locale: Locale }) {
   const t = getDictionary(locale);
+  const activeSkills = skills.filter((skill) => skill.is_active).sort((a, b) => a.sort_order - b.sort_order);
   return (
     <section id="skills" className="section-space relative isolate scroll-mt-24 overflow-hidden bg-[var(--accent-strong)] text-white">
       <div aria-hidden="true" className="capability-map-grid absolute inset-0 -z-10" />
@@ -41,9 +47,14 @@ export function CoreSkillsSection({ skills, locale }: { skills: SkillCategory[];
             <span className="pb-1 text-[10px] font-semibold tracking-[.14em] text-[var(--sand)]">{t.skillsEyebrow}</span>
           </div>
         </div>
-        <div className="scroll-reveal relative grid border-y border-white/20 md:grid-cols-2 lg:grid-cols-4">
+        <div className="scroll-reveal md:hidden">
+          <MobileCarousel label={t.skills} previousLabel={t.previousSlide} nextLabel={t.nextSlide} tone="dark">
+            {activeSkills.map((skill, index) => <SkillCategoryCard carousel key={skill.id} skill={skill} locale={locale} index={index} />)}
+          </MobileCarousel>
+        </div>
+        <div className="scroll-reveal relative hidden border-y border-white/20 md:grid md:grid-cols-2 lg:grid-cols-4">
           <span aria-hidden="true" className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-[var(--sand)] via-white/20 to-transparent" />
-          {skills.filter((skill) => skill.is_active).sort((a, b) => a.sort_order - b.sort_order).map((skill, index) => <SkillCategoryCard key={skill.id} skill={skill} locale={locale} index={index} />)}
+          {activeSkills.map((skill, index) => <SkillCategoryCard key={skill.id} skill={skill} locale={locale} index={index} />)}
         </div>
       </div>
     </section>

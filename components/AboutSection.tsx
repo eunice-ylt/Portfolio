@@ -2,8 +2,21 @@ import type { AboutContent, Locale, Trait } from '@/lib/types';
 import { localize } from '@/lib/locale';
 import { getDictionary } from '@/lib/dictionary';
 import { Icon } from './ui/Icon';
+import { MobileCarousel } from './ui/MobileCarousel';
 
-export function TraitCard({ trait, locale }: { trait: Trait; locale: Locale }) {
+export function TraitCard({ trait, locale, carousel = false }: { trait: Trait; locale: Locale; carousel?: boolean }) {
+  if (carousel) {
+    return (
+      <article className="flex min-h-[310px] flex-col p-7">
+        <span className="grid h-14 w-14 place-items-center rounded-full border border-[var(--line-strong)] text-[var(--accent)]">
+          <Icon name={trait.icon} size={27} />
+        </span>
+        <h3 className="display-type mt-10 text-[1.75rem] font-semibold leading-tight tracking-[-.03em]">{localize(locale, trait.title_zh, trait.title_en)}</h3>
+        <p className="mt-auto border-t border-[var(--line)] pt-6 text-[15px] leading-7 text-[var(--ink-soft)]">{localize(locale, trait.description_zh, trait.description_en)}</p>
+      </article>
+    );
+  }
+
   return (
     <article className="group grid gap-5 border-t border-[var(--line)] py-5 transition-colors hover:border-[var(--accent)] md:grid-cols-[44px_1fr_1.6fr] md:items-start">
       <Icon name={trait.icon} className="text-[var(--accent)]" size={23} />
@@ -16,6 +29,7 @@ export function TraitCard({ trait, locale }: { trait: Trait; locale: Locale }) {
 export function AboutSection({ about, traits, locale }: { about: AboutContent; traits: Trait[]; locale: Locale }) {
   const t = getDictionary(locale);
   const paragraphs = localize(locale, about.content_zh, about.content_en).split(/\n\s*\n/).filter(Boolean);
+  const activeTraits = traits.filter((trait) => trait.is_active).sort((a, b) => a.sort_order - b.sort_order);
   return (
     <section id="about" className="section-space scroll-mt-24 border-b border-[var(--line)] bg-[var(--paper)]">
       <div className="page-shell">
@@ -38,8 +52,15 @@ export function AboutSection({ about, traits, locale }: { about: AboutContent; t
             <h3 className="text-lg font-semibold">{t.traits}</h3>
             <p className="mt-2 text-[10px] font-semibold tracking-[.11em] text-[var(--ink-muted)]">{t.traitsEyebrow}</p>
           </div>
-          <div className="lg:col-span-9">
-            {traits.filter((trait) => trait.is_active).sort((a, b) => a.sort_order - b.sort_order).map((trait) => <TraitCard key={trait.id} trait={trait} locale={locale} />)}
+          <div className="min-w-0 lg:col-span-9">
+            <div className="md:hidden">
+              <MobileCarousel label={t.traits} previousLabel={t.previousSlide} nextLabel={t.nextSlide}>
+                {activeTraits.map((trait) => <TraitCard carousel key={trait.id} trait={trait} locale={locale} />)}
+              </MobileCarousel>
+            </div>
+            <div className="hidden md:block">
+              {activeTraits.map((trait) => <TraitCard key={trait.id} trait={trait} locale={locale} />)}
+            </div>
           </div>
         </div>
       </div>
