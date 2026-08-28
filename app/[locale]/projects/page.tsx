@@ -26,15 +26,19 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   return (
     <main>
       <Header locale={locale} />
-      <section className="relative overflow-hidden border-b border-[#1f3b2f]/10 bg-[#f7f6f1] py-20 lg:py-28">
-        <div className="blueprint-grid absolute inset-0 opacity-45" />
-        <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-10">
-          <p className="text-[10px] font-bold tracking-[.18em] text-[#52705c]">SELECTED WORK / PROJECT ARCHIVE</p>
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-.055em] sm:text-7xl">{t.casesTitle}</h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#56615b]">{t.casesDescription}</p>
+      <section className="relative overflow-hidden border-b border-[var(--line)] bg-[var(--paper)] py-20 lg:py-32">
+        <div className="spec-grid absolute inset-0 opacity-55" />
+        <div className="page-shell relative grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <h1 className="display-type text-balance text-[clamp(3.25rem,8vw,7.5rem)] font-semibold leading-[.92] tracking-[-.04em]">{t.casesTitle}</h1>
+          </div>
+          <div className="lg:col-span-4 lg:pb-2">
+            <p className="text-[10px] font-semibold tracking-[.11em] text-[var(--ink-muted)]">{t.projectArchive}</p>
+            <p className="mt-5 max-w-[58ch] text-base leading-8 text-[var(--ink-soft)]">{t.casesDescription}</p>
+          </div>
         </div>
       </section>
-      <section className="bg-[#fbfaf6] py-16 lg:py-24"><div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-10"><ProjectList projects={projects} locale={locale} /></div></section>
+      <section className="section-space bg-[var(--paper)]"><div className="page-shell"><ProjectList projects={projects} locale={locale} /></div></section>
       <ContactSection contact={content.contact} locale={locale} />
       <Footer contact={content.contact} locale={locale} />
     </main>

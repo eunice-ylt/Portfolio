@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Mail, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { getDictionary } from '@/lib/dictionary';
 import type { Locale } from '@/lib/types';
@@ -36,38 +36,39 @@ export function Header({ locale }: { locale: Locale }) {
   }, [onHome]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1f3b2f]/10 bg-[#fbfaf6]/92 backdrop-blur-xl">
-      <div className="mx-auto flex h-[78px] max-w-[1440px] items-center justify-between px-5 lg:px-10">
-        <a className="flex min-w-0 items-center gap-3" href={homeBase}>
-          <span className="font-serif text-4xl italic tracking-tight text-[#173f2a]">YL</span>
-          <span className="min-w-0 border-l border-[#1f3b2f]/15 pl-3">
-            <strong className="block truncate text-[13px] tracking-[.06em] sm:text-[15px]">羅翊寧 <span className="font-medium">Yi-Ning Lo</span></strong>
-            <small className="mt-1 hidden text-[8px] font-semibold tracking-[.12em] text-[#516059] sm:block">PROJECT MANAGER / SYSTEM ANALYST</small>
+    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[color:rgb(255_253_248/94%)] backdrop-blur-md">
+      <div className="page-shell flex h-[72px] items-center justify-between gap-6">
+        <a className="flex min-w-0 items-center gap-3" href={homeBase} aria-label="Yi-Ning Lo - Home">
+          <span className="display-type text-[1.75rem] font-semibold italic tracking-[-.04em] text-[var(--accent-strong)]">YL</span>
+          <span className="min-w-0 border-l border-[var(--line)] pl-3">
+            <strong className="block truncate text-[12px] font-semibold tracking-[.025em] sm:text-[13px]">羅翊寧 <span className="font-normal">Yi-Ning Lo</span></strong>
+            <small className="mt-1 hidden text-[8px] font-semibold tracking-[.1em] text-[var(--ink-muted)] sm:block">PROJECT MANAGER / SYSTEM ANALYST</small>
           </span>
         </a>
 
-        <nav className="hidden items-center gap-7 text-[13px] font-semibold xl:flex" aria-label="Primary navigation">
-          {links.map((link) => (
-            <a key={link.id} className={`nav-link ${active === link.id || (link.id === 'projects' && pathname?.includes('/projects')) ? 'active' : ''}`} href={link.href}>{link.label}</a>
-          ))}
+        <nav className="hidden items-center gap-4 text-[12px] font-semibold lg:flex xl:gap-7" aria-label="Primary navigation">
+          {links.map((link) => {
+            const isActive = onHome ? active === link.id : link.id === 'projects' && pathname?.includes('/projects');
+            return <a key={link.id} className={`nav-link ${isActive ? 'active' : ''}`} href={link.href}>{link.label}</a>;
+          })}
         </nav>
 
-        <div className="hidden items-center gap-5 xl:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <LanguageSwitcher locale={locale} />
-          <a className="inline-flex items-center gap-2 rounded-md bg-[#153d27] px-5 py-3 text-xs font-semibold text-white transition hover:bg-[#205438]" href={`${homeBase}#contact`}>
-            <Mail size={15} /> {t.contact}
+          <a className="hidden min-h-11 items-center gap-2 border border-[var(--accent-strong)] bg-[var(--accent-strong)] px-4 text-[11px] font-semibold text-white transition hover:bg-[var(--accent)] xl:inline-flex" href={`${homeBase}#contact`}>
+            {t.contact} <ArrowUpRight size={14} />
           </a>
         </div>
 
-        <button className="grid h-11 w-11 place-items-center rounded-md border border-[#23452f]/15 xl:hidden" type="button" aria-label={open ? t.close : t.menu} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+        <button className="grid h-11 w-11 place-items-center border border-[var(--line-strong)] lg:hidden" type="button" aria-label={open ? t.close : t.menu} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen((value) => !value)}>
           {open ? <X size={21} /> : <Menu size={21} />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-[#1f3b2f]/10 bg-[#fbfaf6] px-5 py-5 xl:hidden">
-          <nav className="mx-auto flex max-w-[1440px] flex-col" aria-label="Mobile navigation">
-            {links.map((link) => <a key={link.id} className="border-b border-[#1f3b2f]/10 py-4 text-sm font-semibold" href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
+        <div className="border-t border-[var(--line)] bg-[var(--paper)] py-4 lg:hidden">
+          <nav id="mobile-navigation" className="page-shell flex flex-col" aria-label="Mobile navigation">
+            {links.map((link) => <a key={link.id} className="flex min-h-14 items-center justify-between border-b border-[var(--line)] text-sm font-semibold" href={link.href} onClick={() => setOpen(false)}>{link.label}<ArrowUpRight size={15} /></a>)}
             <div className="pt-5"><LanguageSwitcher locale={locale} /></div>
           </nav>
         </div>
