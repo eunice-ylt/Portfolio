@@ -11,7 +11,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-family: "Aptos", "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
 }
 ::selection { background: #c8d8c6; color: #173f2a; }
 a { color: inherit; text-decoration: none; }
@@ -38,7 +38,7 @@ button { cursor: pointer; }
 
 .contact-item { display: flex; min-width: 0; align-items: center; gap: .9rem; border-left: 1px solid rgb(31 59 47 / 12%); padding: .8rem 1rem; color: #294d35; }
 .contact-item span { min-width: 0; }
-.contact-item small { display: block; font-size: 9px; font-weight: 700; letter-spacing: .14em; color: #6b7a70; }
+.contact-item small { display: block; font-size: 9px; font-weight: 700; letter-spacing: .14em; color: #5c6b62; }
 .contact-item strong { display: block; margin-top: .35rem; overflow: hidden; text-overflow: ellipsis; font-size: 12px; color: #26312c; }
 
 .filter-button { border: 1px solid rgb(31 59 47 / 16%); border-radius: 999px; background: white; padding: .65rem 1.05rem; font-size: 12px; font-weight: 650; color: #56615b; transition: .2s ease; }

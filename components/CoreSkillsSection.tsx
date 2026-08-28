@@ -6,15 +6,15 @@ import { Icon } from './ui/Icon';
 import { SectionHeading } from './SectionHeading';
 
 const cardStyles = [
-  'from-[#f0f0e9] to-[#f8f7f1] text-[#234b2f]',
-  'from-[#eaf0f7] to-[#f6f8fb] text-[#1d4b76]',
-  'from-[#fbf1e3] to-[#fdf9f3] text-[#a65d00]',
-  'from-[#efedf7] to-[#f8f7fb] text-[#3a2e83]',
+  'bg-[#f0f2ec]',
+  'bg-[#edf2ee]',
+  'bg-[#f3f4ef]',
+  'bg-[#eef1ea]',
 ];
 
 export function SkillCategoryCard({ skill, locale, index }: { skill: SkillCategory; locale: Locale; index: number }) {
   return (
-    <article className={`group flex min-h-[340px] flex-col rounded-xl border border-white/70 bg-gradient-to-br p-6 sm:p-7 ${cardStyles[index % cardStyles.length]}`}>
+    <article className={`group flex min-h-[340px] flex-col rounded-xl border border-[#173f2a]/10 p-6 text-[#234b2f] shadow-[0_12px_35px_rgba(23,63,42,.035)] sm:p-7 ${cardStyles[index % cardStyles.length]}`}>
       <span className="text-3xl font-light">{skill.number}</span>
       <h3 className="mt-3 text-sm font-bold tracking-[.06em]">{localize(locale, skill.title_zh, skill.title_en).toUpperCase()}</h3>
       <Icon name={skill.icon} className="mt-8" size={48} />

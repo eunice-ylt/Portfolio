@@ -8,7 +8,7 @@ import { Header } from '@/components/Header';
 import { ProjectGallery } from '@/components/projects/ProjectGallery';
 import { getPortfolioContent, getProjectBySlug } from '@/lib/content';
 import { getDictionary } from '@/lib/dictionary';
-import { isLocale, localize } from '@/lib/locale';
+import { isLocale, localize, sanitizeVisibleText } from '@/lib/locale';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,14 +40,14 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <a className="inline-flex items-center gap-2 text-xs font-bold text-[#3f6a4b]" href={`/${locale}/projects`}><ArrowLeft size={16} /> {t.back}</a>
             <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_.8fr] lg:items-end">
               <div>
-                <span className="text-[10px] font-bold tracking-[.18em] text-[#52705c]">{project.category} / CASE STUDY</span>
+                <span className="text-[10px] font-bold tracking-[.18em] text-[#52705c]">{sanitizeVisibleText(project.category)} / CASE STUDY</span>
                 <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-.05em] sm:text-6xl">{title}</h1>
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#56615b]">{localize(locale, project.short_description_zh, project.short_description_en)}</p>
               </div>
               <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-[#1f3b2f]/10 bg-[#1f3b2f]/10 text-sm">
-                <div className="bg-[#fbfaf6] p-5"><dt className="text-[9px] font-bold tracking-widest text-[#718078]">{t.category}</dt><dd className="mt-2 font-semibold">{project.category}</dd></div>
+                <div className="bg-[#fbfaf6] p-5"><dt className="text-[9px] font-bold tracking-widest text-[#718078]">{t.category}</dt><dd className="mt-2 font-semibold">{sanitizeVisibleText(project.category)}</dd></div>
                 <div className="bg-[#fbfaf6] p-5"><dt className="text-[9px] font-bold tracking-widest text-[#718078]">{t.role}</dt><dd className="mt-2 font-semibold">{localize(locale, project.role_zh, project.role_en)}</dd></div>
-                <div className="col-span-2 bg-[#fbfaf6] p-5"><dt className="text-[9px] font-bold tracking-widest text-[#718078]">{t.period}</dt><dd className="mt-2 font-semibold">{project.project_period}</dd></div>
+                <div className="col-span-2 bg-[#fbfaf6] p-5"><dt className="text-[9px] font-bold tracking-widest text-[#718078]">{t.period}</dt><dd className="mt-2 font-semibold">{sanitizeVisibleText(project.project_period)}</dd></div>
               </dl>
             </div>
           </div>

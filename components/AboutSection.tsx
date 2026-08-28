@@ -26,7 +26,7 @@ export function AboutSection({ about, traits, locale }: { about: AboutContent; t
           <div className="mt-9 space-y-5 text-[15px] leading-8 text-[#46514c]">
             {localize(locale, about.content_zh, about.content_en).split(/\n\s*\n/).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
-          {localize(locale, about.note_zh, about.note_en) && <p className="mt-9 -rotate-2 font-serif text-lg italic text-[#5f815b]">{localize(locale, about.note_zh, about.note_en)}</p>}
+          {localize(locale, about.note_zh, about.note_en) && <p className="mt-9 -rotate-2 font-serif text-lg italic text-[#486a4b]">{localize(locale, about.note_zh, about.note_en)}</p>}
         </div>
 
         <div>

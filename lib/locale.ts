@@ -7,9 +7,14 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
+export function sanitizeVisibleText(value: string) {
+  return value.replace(/[—–]/g, '-');
+}
+
 export function localize(locale: Locale, zh: string | null | undefined, en: string | null | undefined) {
   const fallback = zh?.trim() || en?.trim() || '';
-  return locale === 'en' ? en?.trim() || fallback : zh?.trim() || en?.trim() || '';
+  const value = locale === 'en' ? en?.trim() || fallback : zh?.trim() || en?.trim() || '';
+  return sanitizeVisibleText(value);
 }
 
 export function switchLocalePath(pathname: string, locale: Locale) {

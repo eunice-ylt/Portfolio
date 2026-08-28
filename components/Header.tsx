@@ -38,7 +38,7 @@ export function Header({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-50 border-b border-[#1f3b2f]/10 bg-[#fbfaf6]/92 backdrop-blur-xl">
       <div className="mx-auto flex h-[78px] max-w-[1440px] items-center justify-between px-5 lg:px-10">
-        <a className="flex min-w-0 items-center gap-3" href={homeBase} aria-label={t.home}>
+        <a className="flex min-w-0 items-center gap-3" href={homeBase}>
           <span className="font-serif text-4xl italic tracking-tight text-[#173f2a]">YL</span>
           <span className="min-w-0 border-l border-[#1f3b2f]/15 pl-3">
             <strong className="block truncate text-[13px] tracking-[.06em] sm:text-[15px]">羅翊寧 <span className="font-medium">Yi-Ning Lo</span></strong>
